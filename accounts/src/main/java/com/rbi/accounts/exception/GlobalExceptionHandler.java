@@ -1,7 +1,6 @@
 package com.rbi.accounts.exception;
 
 import com.rbi.accounts.dto.ErrorResponseDto;
-import io.micrometer.core.instrument.binder.http.HttpRequestTags;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
