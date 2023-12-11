@@ -14,4 +14,14 @@ spring:
     hibernate:
       ddl-auto:update
       show-sql:true
+build:
+  version: "1.0"
 
+accounts:
+  message: "Welcome to RBI accounts related local APIs "
+  contactDetails:
+    name: "Shreyas V - Developer"
+    email: "Shreyas@rbi.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345

@@ -1,0 +1,38 @@
+services:
+  accounts:
+    image: "shreyasv007/accounts:rbi"
+    container_name: accounts_ms
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - rbi
+  loans:
+    image: "shreyasv007/loans:rbi"
+    container_name: loans_ms
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - rbi
+  cards:
+    image: "shreyasv007/cards:rbi"
+    container_name: cards_ms
+    ports:
+      - "9000:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - rbi
+networks:
+  rbi:
+    driver: "bridge"
+
