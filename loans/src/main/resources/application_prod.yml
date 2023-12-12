@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to RBI loans related prod APIs PRODUCTION"
+  contactDetails:
+    name: "Pelias Sudhir - Product Owner"
+    email: "pelias@RBI.com"
+  onCallSupport:
+    - (723) 656-8709
+    - (156) 342-0956
