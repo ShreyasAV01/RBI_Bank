@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome to RBI cards related local APIs PRODUCTION"
+  contactDetails:
+    name: "Shreyas V - Developer"
+    email: "Shreyas@rbi.com"
+  onCallSupport:
+    - (111) 555-1234
+    - (111) 523-1345
