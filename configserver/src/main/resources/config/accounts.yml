@@ -1,5 +1,5 @@
 build:
-  version: "1.0"
+  version: "3.0"
 
 accounts:
   message: "Welcome to RBI accounts related local APIs "
