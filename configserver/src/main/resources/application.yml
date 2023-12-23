@@ -2,12 +2,23 @@ spring:
   application:
     name: "configserver"
   profiles:
-    active: native
+#    active: native
+    active: git
   cloud:
     config:
       server:
-        native:
-          search-locations: "classpath:/config"
+#        native:
+#          search-locations: "classpath:/config"
+#          search-locations: "file:///D:/Java/RBI_Configs"
+        git:
+          uri: "https://github.com/ShreyasAV01/RBI_Config.git"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+
+
+
 
 server:
   port: 8071
