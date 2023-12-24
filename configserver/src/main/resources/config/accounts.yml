@@ -5,7 +5,7 @@ accounts:
   message: "Welcome to RBI accounts related local APIs "
   contactDetails:
     name: "Shreyas V - Developer"
-    email: "Shreyas@rbi.com"
+    email: "{cipher}f4e835d55f0d65e1b3416b6773058bcf8c8f3c6f54a7cc99191b2a4e3694a552"
   onCallSupport:
     - (555) 555-1234
     - (555) 523-1345
