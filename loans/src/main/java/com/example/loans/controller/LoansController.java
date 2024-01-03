@@ -37,7 +37,7 @@ public class LoansController {
     @Autowired
     private LoansContactInfoDto loansContactInfoDto;
 
-
+    @Autowired
     private ILoansService iLoansService;
 
     @Operation(summary = "Create Loan REST API",description = "REST API to create new loan inside EazyBank")

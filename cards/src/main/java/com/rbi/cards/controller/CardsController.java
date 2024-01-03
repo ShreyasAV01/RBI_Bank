@@ -34,6 +34,7 @@ public class CardsController  {
     @Autowired
     private Environment environment;
 
+    @Autowired
     private ICardsService cardsService;
 
     @Autowired
