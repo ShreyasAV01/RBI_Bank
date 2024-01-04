@@ -1,33 +1,33 @@
 services:
-  accountsdb:
-    container_name: accountsdb
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: accountsdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
-
-  loansdb:
-    container_name: loansdb
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_DATABASE: loansdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
-
-  cardsdb:
-    container_name: cardsdb
-    ports:
-      - 3308:3306
-    environment:
-      MYSQL_DATABASE: cardsdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
+#  accountsdb:
+#    container_name: accountsdb
+#    ports:
+#      - 3306:3306
+#    environment:
+#      MYSQL_DATABASE: accountsdb
+#    extends:
+#      file: common-config.yml
+#      service: microservice-db-config
+#
+#  loansdb:
+#    container_name: loansdb
+#    ports:
+#      - 3307:3306
+#    environment:
+#      MYSQL_DATABASE: loansdb
+#    extends:
+#      file: common-config.yml
+#      service: microservice-db-config
+#
+#  cardsdb:
+#    container_name: cardsdb
+#    ports:
+#      - 3308:3306
+#    environment:
+#      MYSQL_DATABASE: cardsdb
+#    extends:
+#      file: common-config.yml
+#      service: microservice-db-config
 
 #  rabbit:
 #    image: rabbitmq:3.12-management
@@ -45,10 +45,26 @@ services:
 #      file: common-config.yml
 #      service: network-deploy-service
 
+  eurekaserver:
+    image: "shreyasv007/eurekaserver:rbi"
+    container_name:  eurekaserver-ms
+    ports:
+      - "8070:8070"
+    healthcheck:
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+    environment:
+      SPRING_APPLICATION_NAME: "eurekaserver"
 
   configserver:
     image: "shreyasv007/configserver:rbi"
-    container_name: configserver_ms
+    container_name: configserver-ms
     ports:
       - "8071:8071"
     healthcheck:
@@ -66,49 +82,49 @@ services:
 
   accounts:
     image: "shreyasv007/accounts:rbi"
-    container_name: accounts_ms
+    container_name: accounts-ms
     ports:
       - "8080:8080"
     environment:
       SPRING_APPLICATION_NAME: "accounts"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
-    depends_on:
-      accountsdb:
-        condition: service_healthy
+#      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
+#    depends_on:
+#      accountsdb:
+#        condition: service_healthy
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eureka-config
 
 
   loans:
     image: "shreyasv007/loans:rbi"
-    container_name: loans_ms
+    container_name: loans-ms
     ports:
       - "8090:8090"
     environment:
       SPRING_APPLICATION_NAME: "loans"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
-    depends_on:
-      loansdb:
-        condition: service_healthy
+#      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
+#    depends_on:
+#      loansdb:
+#        condition: service_healthy
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eureka-config
 
   cards:
     image: "shreyasv007/cards:rbi"
-    container_name: cards_ms
+    container_name: cards-ms
     ports:
       - "9000:9000"
     environment:
       SPRING_APPLICATION_NAME: "cards"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
-    depends_on:
-      cardsdb:
-        condition: service_healthy
+#      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
+#    depends_on:
+#      cardsdb:
+#        condition: service_healthy
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
+      service: microservice-eureka-config
 
 networks:
   rbi:
